@@ -87,5 +87,5 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
-  grunt.registerTask('default', ['jshint','uglify','requirejs', 'watch']);
+  grunt.registerTask('default', ['jshint','uglify','handlebars','requirejs', 'watch']);
 };
