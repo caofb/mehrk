@@ -1,0 +1,14 @@
+{
+  "session_secret": "mehrk",
+  "port": 3000,
+  "loginDays":21,
+  "site_static_host": "", 
+  "mongo":{
+  	"host": "127.0.0.1",
+    "port": "27017",
+    "username":"",
+    "password": "",
+    "database": "mehrk"  
+  }
+  
+}

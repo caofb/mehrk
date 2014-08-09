@@ -1,0 +1,25 @@
+<!doctype html>
+
+<head>
+  <title>{{title}}</title>
+  <link rel='stylesheet' href='/css/bootstrap.min.css'>
+  <link rel='stylesheet' href='/css/main.css'>
+</head>
+
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top header" role="navigation" id="header-menu">
+		{{> head}}
+	</div>
+	
+	<div id="content" class="container">
+       {{{body}}}
+   </div>
+   {{#if isDevelopment}}
+    <script data-main="/js/main.js" src="/js/require.js"></script>
+   {{else}}
+   <script  src="/builderjs/mehrklib.js"></script>
+   <script  src="/builderjs/mehrkmodule.js"></script>
+   {{/if}}
+</body>
+
+</html>

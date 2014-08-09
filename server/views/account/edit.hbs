@@ -1,0 +1,99 @@
+
+<div class="account" id="account_edit">
+	<div class="row">
+		<div class="col-md-2" style="text-align: center; margin-bottom:20px;">
+			<div class="account-picture-block text-center">
+				<img id="user-current-picture" class="user-profile-picture img-thumbnail" src="{{avatar_url}}" /><br /><br />
+			</div>
+		</div>
+
+		<div class="col-md-5">
+			<div>
+				<div class="alert alert-danger" id="changeProfile-error-notify" style="display:none">
+				   <button type="button" class="close" data-dismiss="alert">&times;</button>
+				   <strong>修改失败，请再尝试。</strong> <p></p>
+			    </div>
+			    <div class="alert alert-success" id="changeProfile-success-notify" style="display:none">
+				   <button type="button" class="close" data-dismiss="alert">&times;</button>
+				   <strong>修改成功。</strong> <p></p>
+			    </div>
+				<form class='form-horizontal'  data-bind="submit:changeProfile">
+					<div class="control-group">
+						<label class="control-label" for="inputWebsite">网站</label>
+						<div class="controls">
+							<input class="form-control" type="text" id="inputWebsite" placeholder="http://..." value="{{website}}" data-bind="initializeValue:website,value:website">
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="inputLocation">地址</label>
+						<div class="controls">
+							<input class="form-control" type="text" id="inputLocation" placeholder="地址" value="{{location}}" data-bind="initializeValue:location,value:location">
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="inputSignature">签名</label> <small><label id="signatureCharCountLeft"></label></small>
+						<div class="controls">
+							<input class="form-control" id="inputSignature" placeholder="签名" value="{{signature}}" data-bind="initializeValue:signature,value:signature"></input>
+						</div>
+					</div>
+                    <br/>
+					<div class="form-actions">
+						<button class="btn btn-primary" id="changeProfileBtn" type="submit">保存修改</button>
+					</div>
+
+				</form>
+			</div>
+
+			<hr class="visible-xs visible-sm"/>
+		</div>
+
+		<div class="col-md-5">
+			<div style="vertical-align:top;">
+				<div class="alert alert-danger" id="changePassword-error-notify" style="display:none">
+				   <button type="button" class="close" data-dismiss="alert">&times;</button>
+				   <strong>修改密码失败，请再尝试。</strong> <p></p>
+			    </div>
+			    <div class="alert alert-success" id="changePassword-success-notify" style="display:none">
+				   <button type="button" class="close" data-dismiss="alert">&times;</button>
+				   <strong>修改密码成功。</strong> <p></p>
+			    </div>
+				<form class='form-horizontal' data-bind="submit:changePassowrd">
+					<div class="control-group">
+						<label class="control-label" for="inputCurrentPassword">当前密码</label>
+						<div class="controls">
+							<input class="form-control" type="password" id="inputCurrentPassword" placeholder="当前密码"  data-bind="value:currentPassword">
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="inputNewPassword">密码</label>
+						<div class="input-group">
+							<input class="form-control" type="password" id="inputNewPassword" placeholder="密码" data-bind="value:newPassword">
+							<span class="input-group-addon">
+								<span id="password-notify"><i class="glyphicon glyphicon-asterisk"></i></span>
+							</span>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="inputNewPasswordAgain">确认密码</label>
+						<div class="input-group">
+							<input class="form-control" type="password" id="inputNewPasswordAgain" placeholder="确认密码" data-bind="value:newConfirmPassword">
+							<span class="input-group-addon">
+								<span id="password-confirm-notify"><i class="glyphicon glyphicon-asterisk"></i></span>
+							</span>
+						</div>
+					</div>
+					<br/>
+					<div class="form-actions">
+						<button class="btn btn-primary" id="changePasswordBtn" type="submit">更改密码</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+    <input type="hidden" name="_csrf" value="{{token}}" id="csrf-token"/>
+</div>
+

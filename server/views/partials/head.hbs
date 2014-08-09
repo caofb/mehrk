@@ -1,0 +1,52 @@
+<div id="head-bar">  
+  <div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<div>
+					<a href="/" class="navbar-brand">NodeJsBasic
+					</a>
+				</div>
+			</div>
+
+			<div class="navbar-collapse collapse navbar-ex1-collapse">
+				{{#if isLoggedIn}}
+                <div id="user_label" class="dropdown navbar-right">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="/account/edit" id="user_dropdown" title="设置">
+							<img id="user-header-picture" src="{{user.avatar_url}}"/>
+							<span id="user-header-name">{{user.username}}</span>
+						</a>
+                        <form class="form-horizontal" role="form"  method="post"  >
+						  <a href="#" data-bind="click:logoutUser"><span title="退出"><i class="glyphicon glyphicon-log-out"></i></span></a>
+					    </form>
+				</div>
+
+				{{else}}
+
+				<ul id="logged-out-menu" class="nav navbar-nav navbar-right pull-right">
+					<!-- IF allowRegistration -->
+					<li>
+						<a href="/register">
+							<i class="fa fa-pencil visible-xs-inline"></i>
+							<span>注册</span>
+						</a>
+					</li>
+					<!-- ENDIF allowRegistration -->
+					<li>
+						<a href="/login">
+							<i class="fa fa-sign-in visible-xs-inline"></i>
+							<span>登录</span>
+						</a>
+					</li>
+				</ul>
+                {{/if}}
+				<div class="header-topic-title hidden-xs">
+					<span></span>
+				</div>
+			</div>
+  </div>
+  <input id="csrf_token" type="hidden" template-variable="csrf" value="{{csrf_token}}" />
+</div>

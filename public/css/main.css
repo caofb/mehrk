@@ -1,0 +1,28 @@
+#content{
+  padding-top: 60px;
+}
+.validationMessage{
+	color: red;
+}
+#user_label{
+	margin-top:13px;
+}
+#user_label img{
+	       
+			border: 1px solid #454;
+			width: 19px;
+			height: 19px;
+
+		}
+#user_label  a:hover {
+	text-decoration: none;
+}	
+#user_label span {
+			font-size: 14px;
+			font-weight: 400;
+			color:white;
+}
+#user_label form{
+	display: inline;
+	margin-left: 20px;
+}
