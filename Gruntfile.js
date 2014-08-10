@@ -62,6 +62,14 @@ module.exports = function (grunt) {
      }
     }
    },
+   mochaTest: {
+      test: {
+        options: {
+          reporter: 'spec'
+        },
+        src: ['test/**/*.js']
+      }
+    },
     watch: {
       html:{
         files:['server/views/**/*.hbs'],
@@ -70,6 +78,10 @@ module.exports = function (grunt) {
       js:{
         files:['server/**/*.js','public/**/*.js'],
         tasks: ['jshint']
+      },
+      test:{
+        files:['test/**/*.js'],
+        tasks: ['mochaTest']
       },
       livereload:{  
         options:{  
@@ -86,6 +98,8 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-handlebars');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-mocha-test');
+
 
   grunt.registerTask('default', ['jshint','uglify','handlebars','requirejs', 'watch']);
 };

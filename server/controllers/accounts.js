@@ -20,12 +20,28 @@ accountsController.accountEdit = function(req, res, next) {
 	
 };
 accountsController.getAccount = function(req, res, next) {
-	var callerUID = req.user ?req.user.uid : 0;
-    var data = {};
-	UserOP.getUserById(callerUID,function(err,user){
+	var id = req.params.id;
+  var data = {};
+  if(!id.match(/^[0-9a-fA-F]{24}$/))
+  {
+    if (res.locals.isAPI) {
+           return res.json(404, 'not-found');
+    } else {
+           return res.redirect('404');
+    }
+  }
+	UserOP.getUserById(id,function(err,user){
 			if(err)  {
 				return next(err);
 			}
+      if(!user)
+      {
+        if (res.locals.isAPI) {
+           return res.json(404, 'not-found');
+        } else {
+           return res.redirect('404');
+        }
+      }
 			data=_.pick(user,  ['username','signature', 'website','location', 'avatar_url']);
 			data.title="用户";
 			res.render('account/profile',data);
