@@ -6,7 +6,8 @@
         validator = require('validator'),
         nconf=require('nconf'),
         UserOP = require('../models').UserOP,
-        async=require('async');
+        async=require('async'),
+        winston=require('winston');
 	function logout(req, res) {
 		if (req.user && parseInt(req.user.uid, 10) > 0) {
 			req.logout();
@@ -50,6 +51,7 @@
 		req.assert('confirmPassword', '请输入正确的密码！').equals(req.body.password);
         var errors = req.validationErrors();
         if (errors) {
+            winston.error(errors);
             return res.json(200,{code:403,errors:errors});
         }        
 		var userData = {
@@ -121,6 +123,7 @@
 		    req.assert('password', '请输入合法的密码！').isLength(6);
             var errors = req.validationErrors();
             if (errors) {
+            	winston.error(errors);
                return res.json(200,{code:403,errors:errors});
             }
 

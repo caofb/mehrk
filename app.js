@@ -1,13 +1,27 @@
-var nconf=require('nconf');
+var nconf=require('nconf'),
+    winston=require('winston'),
+    express = require('express');
+var app = express();
 var configFile = __dirname + '/config.json';
 
 nconf.file({
         file: configFile
     });
-var express = require('express'),
-    middleware = require('./server/middleware');
+if (app.get('env') === 'development'){
+	winston.remove(winston.transports.Console);
+    winston.add(winston.transports.Console, {
+	  colorize: true,
+	  level:'debug'
+    });
+}
+
+winston.add(winston.transports.File, {
+	filename: 'logs/error.log',
+	level: 'warn'
+});
+var  middleware = require('./server/middleware');
     
-var app = express();
+
 
 
 

@@ -15,6 +15,7 @@ var expressValidator = require('express-validator');
 var session    = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var auth = require('./../routes/authentication');
+var winston=require('winston');
 var app;
 
 var middleware = {};
@@ -26,12 +27,12 @@ function handleErrors(err, req, res, next) {
 	  res.status(500);
     if (!res.locals.isAPI) {
       if (process.env.NODE_ENV === 'development') {
-        console.log(err.message + req.url);
+        winston.error(err.message + req.url);
       }
       res.redirect('/500');
     } else{
       if (process.env.NODE_ENV === 'development') {
-        console.log(err.message + req.url);
+        winston.error(err.message + req.url);
       }
       res.json({
         error: err.message
@@ -43,12 +44,12 @@ function catch404(req, res, next) {
     res.status(404);
     if (!res.locals.isAPI) {
       if (process.env.NODE_ENV === 'development') {
-        console.log('Route requested but not found: ' + req.url);
+        winston.error('Route requested but not found: ' + req.url);
       }
       res.redirect('/404');
     } else{
       if (process.env.NODE_ENV === 'development') {
-        console.log('Route requested but not found: ' + req.url);
+        winston.error('Route requested but not found: ' + req.url);
       }
       res.json({
         error: 'Not found'
@@ -71,8 +72,9 @@ module.exports = function(webserver) {
     if (app.get('env') !== 'development') {
     	app.enable('view cache');
     }         
-    
-    app.use(logger('dev'));
+    else{
+      app.use(logger('dev'));
+    }   
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded());
     app.use(expressValidator());
