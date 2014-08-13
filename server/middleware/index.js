@@ -26,14 +26,10 @@ function handleErrors(err, req, res, next) {
 	// we possibly recovered from the error, simply next().
 	  res.status(500);
     if (!res.locals.isAPI) {
-      if (process.env.NODE_ENV === 'development') {
-        winston.error(err.message + req.url);
-      }
+      winston.error(err.message + req.url);
       res.redirect('/500');
     } else{
-      if (process.env.NODE_ENV === 'development') {
-        winston.error(err.message + req.url);
-      }
+      winston.error(err.message + req.url);
       res.json({
         error: err.message
       });
